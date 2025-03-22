@@ -1,48 +1,47 @@
+using InputLibrary;
+
 namespace GameLibrary;
-public class Game
+public class Game : IInit
+{
+    public string Name
     {
-        public string Name
-        {
-            get;
-            protected set;
-        } = "";
-        public int MinPlayers { get; protected set; } = 0;
-        public int MaxPlayers { get; protected set; } = 0;
+        get;
+        protected set;
+    } = "";
+    public int MinPlayers { get; protected set; } = 0;
+    public int MaxPlayers { get; protected set; } = 0;
 
 
 
-        public virtual void Init()
-        {
-            Console.WriteLine("Input paramethers of game:");
-            Console.WriteLine("Input name:");
-            Name = Input.InputString();
-            Console.WriteLine("Input min count of players:");
-            MinPlayers = Input.InputNoLess(1);
-            Console.WriteLine("Input max count of players:");
-            MaxPlayers = Input.InputNoLess(MinPlayers);
-        }
-        public virtual void RandomInit()
-        {
-            Name = Rand.RandomString();
-            MinPlayers = Rand.rand.Next(0, 10);
-            MaxPlayers = Rand.rand.Next(MinPlayers, 15);
-        }
-        public virtual bool Equals(object other)
-        {
-            if (other.GetType() != typeof(Game)) return false;
-            else
-            {
-                Game obj2 = (Game)other;
-                return (Name == obj2.Name) && MinPlayers == obj2.MinPlayers &&  MaxPlayers == obj2.MaxPlayers;
-            }
-        }
-        public virtual void Show()
-        {
-            Console.WriteLine($"Game({StringProperties()})");
-        }
-
-        protected string StringProperties()
-        {
-            return $"name - {Name}, min count of players - {MinPlayers}, max - {MaxPlayers}";
-        }
+    public virtual void Init()
+    {
+        Console.WriteLine("Input paramethers of game:");
+        Console.WriteLine("Input name:");
+        Name = ConsoleInput.LINE.get();
+        Console.WriteLine("Input min count of players:");
+        MinPlayers = ConsoleInput.NATURAL.get();
+        Console.WriteLine("Input max count of players:");
+        MaxPlayers = ConsoleInput.GetNoLess(MinPlayers).get();
     }
+    public virtual void RandomInit()
+    {
+        Name = Rand.RandomString();
+        MinPlayers = Rand.rand.Next(0, 10);
+        MaxPlayers = Rand.rand.Next(MinPlayers, 15);
+    }
+    public override bool Equals(object? obj)
+    {
+        if (obj is Game other)
+            return Name.Equals(other.Name) && MinPlayers == other.MinPlayers && MaxPlayers == other.MaxPlayers;
+        else return false;
+    }
+    public virtual void Show()
+    {
+        Console.WriteLine($"Game({StringProperties()})");
+    }
+
+    protected string StringProperties()
+    {
+        return $"name - {Name}, min count of players - {MinPlayers}, max - {MaxPlayers}";
+    }
+}
