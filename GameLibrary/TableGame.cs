@@ -5,9 +5,8 @@ namespace GameLibrary;
 
 public class TableGame : Game
 {
-    public class Attribute
+    public class Attribute : Game.Attribute
     {
-        public string Name { get; protected set; }
         public Attribute(string name)
         {
             Name = name;
@@ -60,7 +59,7 @@ public class TableGame : Game
         base.Init();
         Console.WriteLine("Input field name or press enter");
         string fieldName = ConsoleInput.LINE.get();
-        if (!new Regex("/s*").IsMatch(fieldName))
+        if (!new Regex(@"\s*").IsMatch(fieldName))
         {
             GameField = new Field(fieldName);
         }
@@ -104,5 +103,16 @@ public class TableGame : Game
             return GameField.Equals(other.GameField) && Attributes.SetEquals(other.Attributes);
         }
         else return false;
+    }
+    public void CloneTo(TableGame game) {
+        base.CloneTo(game);
+        game.Attributes = new SortedSet<Attribute>(Attributes);
+        game.GameField = new Field(GameField.Name);
+    }
+    public override object GetClone()
+    {
+        TableGame tableGame = new TableGame();
+        CloneTo(tableGame);
+        return tableGame;
     }
 }

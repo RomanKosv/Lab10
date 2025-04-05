@@ -4,9 +4,8 @@ namespace GameLibrary;
 
 public class VideoGame : Game
 {
-    public class Device
+    public class Device : Game.Attribute
     {
-        public string Name { get; protected set; }
         public Device(string name)
         {
             Name = name;
@@ -64,5 +63,15 @@ public class VideoGame : Game
             return Devices.SetEquals(other.Devices) && Layers == other.Layers;
         }
         else return false;
+    }
+    public void CloneTo(VideoGame game) {
+        base.CloneTo(game);
+        game.Devices = new SortedSet<Device>(Devices);
+        game.Layers = Layers;
+    }
+    public override object GetClone() {
+        VideoGame game = new VideoGame();
+        CloneTo(game);
+        return game;
     }
 }

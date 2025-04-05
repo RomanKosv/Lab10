@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary", "GameLibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputLibrary", "InputLibrary\InputLibrary.csproj", "{EA30731E-48FE-4CC9-B9C3-7338DF4DE8B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunProject", "RunProject\RunProject.csproj", "{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{EA30731E-48FE-4CC9-B9C3-7338DF4DE8B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA30731E-48FE-4CC9-B9C3-7338DF4DE8B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA30731E-48FE-4CC9-B9C3-7338DF4DE8B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

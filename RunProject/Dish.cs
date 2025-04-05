@@ -1,8 +1,7 @@
+using  InputLibrary;
 using GameLibrary;
-using InputLibrary;
 
-
-public class Dish : IInit
+public class Dish : IPrintable
 {
     private static int COUNT = 0;
     public static int Count()
@@ -116,14 +115,23 @@ public class Dish : IInit
         Console.WriteLine("Input parameters of dish:");
         Console.WriteLine("Input carbohydrites::");
         Carbohydrates = ConsoleInput.NAT0.get();
-        
+        Console.WriteLine("Input fats::");
+        Fats = ConsoleInput.NAT0.get();
+        Console.WriteLine("Input proteins::");
+        Proteins = ConsoleInput.NAT0.get();
     }
 
     public void RandomInit()
     {
-        throw new NotImplementedException();
+        Carbohydrates = Rand.rand.NextDouble()*100;
+        Fats = Rand.rand.NextDouble()*100;
+        Proteins = Rand.rand.NextDouble()*100;
     }
 
+    public void Show()
+    {
+        Display();
+    }
 
     ~Dish()
     {

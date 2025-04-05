@@ -31,4 +31,14 @@ public class VRGame : Game
     {
         return base.Equals(obj);
     }
+    public void CloneTo(VRGame game) {
+        base.CloneTo(game);
+        game.NeedControllers = NeedControllers;
+    }
+    public override object GetClone()
+    {
+        VRGame vrGame = new VRGame();
+        CloneTo(vrGame);
+        return vrGame;
+    }
 }

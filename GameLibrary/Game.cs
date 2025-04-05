@@ -1,7 +1,27 @@
 using InputLibrary;
 
 namespace GameLibrary;
-public class Game : IInit
+
+public class IdNumber {
+    protected int number;
+    public int Number {
+        get => number;
+        set {
+            if (value < 0) throw new Exception("Id number cant be less 0");
+            else number = value;
+        }
+    }
+    public override bool Equals(object? obj)
+    {
+        return (obj is IdNumber num) && (num.Number == Number);
+    }
+    public override string ToString()
+    {
+        return $"Id number {Number}";
+    }
+
+}
+public class Game : IPrintable, ICloneable
 {
     public string Name
     {
@@ -11,7 +31,13 @@ public class Game : IInit
     public int MinPlayers { get; protected set; } = 0;
     public int MaxPlayers { get; protected set; } = 0;
 
-
+    public class Attribute : IComparable<Attribute>{
+        public string Name { get; protected set;}
+        public int CompareTo(Attribute? other)
+        {
+            return this.Name.CompareTo(other.Name);
+        }
+    }
 
     public virtual void Init()
     {
@@ -43,5 +69,22 @@ public class Game : IInit
     protected string StringProperties()
     {
         return $"name - {Name}, min count of players - {MinPlayers}, max - {MaxPlayers}";
+    }
+    public void CloneTo(Game newObj) {
+        newObj.MinPlayers = MinPlayers;
+        newObj.MaxPlayers = MaxPlayers;
+        newObj.Name = Name;
+    }
+    public virtual object GetClone() {
+        Game game = new Game();
+        CloneTo(game);
+        return game;
+    }
+    public object Clone()
+    {
+        return GetClone();
+    }
+    public virtual object ShallowCopy() {
+        return this.MemberwiseClone();
     }
 }

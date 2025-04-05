@@ -1,6 +1,7 @@
 ﻿using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 using System.Runtime.Remoting;
+using System.Security;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks.Dataflow;
 
@@ -43,6 +44,9 @@ public class ChainInput<Out>
     {
         return transform<Out>(Checks.Check<Out>(predicate));
     }
+    public ChainInput<Out> check(Predicate<Out> predicate, string errMessage) {
+        return transform<Out>(Checks.Check(predicate, errMessage));
+    }
 
     public Out get() => input();
 
@@ -64,6 +68,10 @@ public static class Checks
         };
     }
 
+    public static TryTransform<T, T> Check<T>(Predicate<T> check, string message) {
+        return Transforms.AddMessage(Check(check), message);
+    }
+
     public static Predicate<int> NoLess(int from)
     {
         return (num) => (from <= num);
@@ -72,6 +80,9 @@ public static class Checks
     public static Predicate<int> NoMore(int to)
     {
         return (num) => num <= to;
+    }
+    public static Predicate<T> Into<T>(IEnumerable<T> list){
+        return (obj) => list.Contains(obj);
     }
 }
 
@@ -87,7 +98,7 @@ public static class Transforms {
     }
 
     public static TryTransform<string, string[]> Split(string separator = ","){
-        return Split(new Regex($@"\s*{separator}\s"));
+        return Split(new Regex($@"\s*{separator}\s*"));
     }
 
     public static TryTransform<IEnumerable<A>, List<B>> Map<A, B>(TryTransform<A, B> function) {
@@ -109,7 +120,8 @@ public static class Transforms {
         {
             if (!transform(input, ref rezult))
             {
-                Console.Write(errMessage + endl);
+                Console.Write(errMessage);
+                Console.Write(endl);
                 return false;
             }
             else return true;
@@ -149,11 +161,11 @@ public static class ConsoleInput
     public static ChainInput<int> INT = MEAN_PART.transform<int>(Transforms.AddMessage<string?, int>(Transforms.GetInt, "Input must be integer number."));
 
     public static TryTransform<int,int> NoLess(int from){
-        return Transforms.AddMessage(Checks.Check(Checks.NoLess(from)), $"Number cant be less {from}.");
+        return Transforms.AddMessage(Checks.Check(Checks.NoLess(from)), $"This value cant be less {from}.");
     }
 
     public static TryTransform<int,int> NoMore(int to){
-        return Transforms.AddMessage(Checks.Check(Checks.NoMore(to)), $"Number cant be more {to}.");
+        return Transforms.AddMessage(Checks.Check(Checks.NoMore(to)), $"This value cant be more {to}.");
     }
 
     public static ChainInput<int> GetNoLess(int from)
