@@ -145,6 +145,12 @@ public static class Transforms {
         };
     }
 
+    public static TryTransform<A, B> Dict<A, B>(IDictionary<A, B> dict) {
+        return (A input, ref B rez) => {
+            return dict.TryGetValue(input, out rez);
+        };
+    }
+    
 }
 
 
