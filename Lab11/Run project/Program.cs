@@ -48,7 +48,7 @@ Type getType()
     bool stop = false;
     do
     {
-        switch (ConsoleInput.MEAN_PART.check(Checks.Into(["stop", "add", "remove", "count", "min", "max", "clone", "sort"]), "Command must be stop, add, remove, show, count, min, max, clone or sort").get())
+        switch (ConsoleInput.MEAN_PART.check(Checks.Into(["stop", "add", "remove", "show", "count", "min", "max", "clone", "sort"]), "Command must be stop, add, remove, show, count, min, max, clone or sort").get())
         {
             case "stop":
                 stop = true;
@@ -145,7 +145,7 @@ Type getType()
     bool stop = false;
     do
     {
-        switch (ConsoleInput.MEAN_PART.check(Checks.Into(["stop", "add", "remove", "count", "min", "max", "clone", "sort"]), "Command must be stop, add, remove, show, count, min, max, clone or sort").get())
+        switch (ConsoleInput.MEAN_PART.check(Checks.Into(["stop", "add", "show", "remove", "count", "min", "max", "clone", "sort"]), "Command must be stop, add, remove, show, count, min, max, clone or sort").get())
         {
             case "stop":
                 stop = true;
@@ -229,7 +229,7 @@ Type getType()
                 list = CloneList(list);
                 break;
             case "sort":
-                list.Sort();
+                list.Sort((a, b) => a.Name.CompareTo(b.Name));
                 break;
         }
     } while (!stop);
@@ -237,5 +237,6 @@ Type getType()
 {
     //Task 3
     Console.WriteLine("Task 3");
-    
+    TestCollection testCollection = new TestCollection();
+    testCollection.Find();
 }

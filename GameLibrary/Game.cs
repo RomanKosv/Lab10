@@ -24,7 +24,7 @@ public class IdNumber
     }
 
 }
-public class Game : IPrintable, ICloneable
+public class Game : IPrintable, ICloneable, IComparable
 {
     public Game GetBase()
     {
@@ -62,7 +62,7 @@ public class Game : IPrintable, ICloneable
     public virtual void RandomInit()
     {
         Name = Rand.RandomString();
-        MinPlayers = Rand.rand.Next(0, 10);
+        MinPlayers = Rand.rand.Next(1, 10);
         MaxPlayers = Rand.rand.Next(MinPlayers, 15);
     }
     public override bool Equals(object? obj)
@@ -99,5 +99,11 @@ public class Game : IPrintable, ICloneable
     public virtual object ShallowCopy()
     {
         return this.MemberwiseClone();
+    }
+
+    public int CompareTo(object? obj)
+    {
+        if (obj is Game game) return Name.CompareTo(game.Name);
+        else throw new Exception("Cant compare with game");
     }
 }
