@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputLibrary", "InputLibrar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunProject", "RunProject\RunProject.csproj", "{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lab11", "Lab11", "{519AB928-C6EA-8769-F834-888391BE3AB3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run project", "Lab11\Run project\Run project.csproj", "{441F9E48-03F7-400B-924F-40DEF13475DB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,23 +55,8 @@ Global
 		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Release|x64.Build.0 = Release|Any CPU
 		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Release|x86.ActiveCfg = Release|Any CPU
 		{60E0FD61-8C4D-49E1-97E0-BFF9D3A8BAC1}.Release|x86.Build.0 = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|x64.Build.0 = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Debug|x86.Build.0 = Debug|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|x64.ActiveCfg = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|x64.Build.0 = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|x86.ActiveCfg = Release|Any CPU
-		{441F9E48-03F7-400B-924F-40DEF13475DB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{441F9E48-03F7-400B-924F-40DEF13475DB} = {519AB928-C6EA-8769-F834-888391BE3AB3}
 	EndGlobalSection
 EndGlobal
