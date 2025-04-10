@@ -55,6 +55,7 @@ for (int i = 0; i < games_count; i++)
 Console.WriteLine("Task 2");
 bool stopTask2 = false;
 do{
+    Console.WriteLine("Input command (show/count_type/max_max_players/min_min_players/stop)");
     switch (ConsoleInput.MEAN_PART.check(Checks.Into(["show", "count_type", "max_max_players", "min_min_players", "stop"]), "Command must be one of show, count_type, max_max_players, min_min_players, stop").get())
     {
         case "show":
@@ -111,6 +112,10 @@ do{
 
 Console.WriteLine("Task 3");
 
+gameList.Sort();
+Console.WriteLine("Sorteg games list:");
+foreach (Game game in gameList) game.Show();
+
 List<IPrintable> commonList = new List<IPrintable>();
 
 Console.WriteLine("Input count of objects:");
@@ -157,4 +162,16 @@ for (int i = 0; i < count; i++)
     }
     commonList[i].Show();
 }
+foreach (var (name, type) in new SortedDictionary<string, Type>()
+{
+    { "dishes", typeof(Dish) },
+    {"games", typeof(Game) },
+    {"table games", typeof(TableGame) },
+    {"video games", typeof(VideoGame) },
+    {"vr game", typeof(VideoGame) }
+})
+{
+    Console.WriteLine($"Count of {name} is {commonList.Count((obj) => obj.GetType().IsSubclassOf(type))}");
+}
+
 
